@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4">Scheduled Appointments</h2>
+
+{% if appts %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>CAID</th>
+            <th>Patient</th>
+            <th>Staff</th>
+            <th>Department</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Reason</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for a in appts %}
+        <tr>
+            <td>{{ a.CAID }}</td>
+            <td>{{ a.Patient }}</td>
+            <td>{{ a.Staff }}</td>
+            <td>{{ a.Department }}</td>
+            <td>{{ a.Date }}</td>
+            <td>{{ a.Time }}</td>
+            <td>{{ a.Reason }}</td>
+            <td>{{ a.Status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+<div class="alert alert-warning">No appointments scheduled yet.</div>
+{% endif %}
+
+{% endblock %}

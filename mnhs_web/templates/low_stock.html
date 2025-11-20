@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4">Medications with Low Stock</h2>
+
+{% if items %}
+<table class="table table-bordered">
+    <thead class="table-danger">
+        <tr>
+            <th>Hospital</th>
+            <th>Medication</th>
+            <th>Quantity</th>
+            <th>Reorder Level</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.Hospital }}</td>
+            <td>{{ item.Medication }}</td>
+            <td>{{ item.Qty }}</td>
+            <td>{{ item.ReorderLevel }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-success">All stocks are sufficient. No low stock detected.</div>
+{% endif %}
+
+{% endblock %}

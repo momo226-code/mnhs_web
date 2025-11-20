@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="mb-4">Schedule a New Appointment</h2>
+
+<div class="alert alert-info">
+    <strong>Valid values from the database:</strong><br>
+
+    <p><strong>Patients:</strong>
+        {% for p in patients %} 
+            {{ p.IID }} ({{ p.FullName }}){% if not loop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
+    <p><strong>Staff:</strong>
+        {% for s in staff %}
+            {{ s.STAFF_ID }} ({{ s.FullName }}){% if not loop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+
+    <p><strong>Departments:</strong>
+        {% for d in departments %}
+            {{ d.DEP_ID }} ({{ d.Name }}){% if not loop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+</div>
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label class="form-label">Clinical Activity ID (CAID)</label>
+        <input type="number" name="caid" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Patient ID (IID)</label>
+        <input type="number" name="iid" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Staff ID</label>
+        <input type="number" name="staff_id" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Department ID</label>
+        <input type="number" name="dep_id" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Date</label>
+        <input type="date" name="date" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Time</label>
+        <input type="time" name="time" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Reason</label>
+        <input type="text" name="reason" class="form-control" required>
+    </div>
+
+    <button class="btn btn-primary">Schedule</button>
+</form>
+
+{% endblock %}
